@@ -1,0 +1,54 @@
+.data
+str_ingresar:         	.asciiz "\nIngrese un numeros: \n" # str son cadenas
+str_ingresar2:         	.asciiz "\nIngrese otro numeros: \n" # str son cadenas
+str_sum:        		.asciiz "\nLa suma es: \n"
+str_res:        		.asciiz "\nLa resta es: \n"
+str_mul:        		.asciiz "\nLa multiplicacion es: \n"
+str_div:        		.asciiz "\nLa division es: \n"
+str_pro:        		.asciiz "\nElpromedio es: \n"
+.text
+
+main:
+        la $a0, str_ingresar #Ingresar numero 1
+        li $v0, 4
+        syscall
+        li $v0, 5
+        syscall
+        add $t0, $v0, $zero 
+
+		la $a0, str_ingresar2 #Ingresar numero 2
+        li $v0, 4
+        syscall
+        li $v0, 5
+        syscall
+        add $t1, $v0, $zero
+		
+        la $a0, str_sum #Mostrar suma
+        li $v0, 4
+        syscall
+        add $a0, $t0, $t1 #Suma
+        li $v0, 1
+        syscall
+		
+        la $a0, str_res #Mostrar resta
+        li $v0, 4
+        syscall
+        sub $a0, $t0, $t1 #resta
+        li $v0, 1
+        syscall
+
+        la $a0, str_mul #Mostrar multiplicacion
+        li $v0, 4
+        syscall
+        mul $a0, $t0, $t1 #multiplicacion
+        li $v0, 1
+        syscall
+		
+		la $a0, str_div #Mostrar division
+        li $v0, 4
+        syscall
+        div $a0, $t0, $t1 #division
+        li $v0, 1
+        syscall
+		
+        jr $ra
